@@ -20,7 +20,38 @@ struct node {
 	int digit2;
 	struct node *next;
 };
+int power(int length)
+{
+	int i, power_10 = 1;
+	for (i = 1; i<length; i++)
+	{
+		power_10 = power_10 * 10;
+	}
+	return power_10;
+}
+
 
 int convert_sll_2digit_to_int(struct node *head){
-	return 0;
+	int length = 0, power_10, result = 0;
+	struct node *temp;
+	temp = head;
+	while (temp != NULL)
+	{
+
+		length++;
+		temp = temp->next;
+	}
+	temp = head;
+	length = length * 2;
+	while (temp != NULL)
+	{
+		power_10 = power(length);
+		result = result + (temp->digit1*power_10);
+		length--;
+		power_10 = power(length);
+		result = result + (temp->digit2*power_10);
+		length--;
+		temp = temp->next;
+	}
+	return result;
 }

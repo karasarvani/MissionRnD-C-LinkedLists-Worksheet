@@ -17,7 +17,35 @@ struct node {
 	int num;
 	struct node *next;
 };
-
 struct node * sortLinkedList(struct node *head) {
-	return NULL;
+	struct node*temp, *temp1, *min_address;
+	int store, min;
+	if (head == NULL)
+		return NULL;
+	else if (head->next == NULL)
+		return head;
+	else
+	{
+		temp1 = head;
+		while (temp1 != NULL)
+		{
+			min = temp1->num;
+			min_address = temp1;
+			temp = temp1->next;
+			while (temp != NULL)
+			{
+				if (temp->num<min)
+				{
+					min = temp->num;
+					min_address = temp;
+				}
+				temp = temp->next;
+			}
+			store = temp1->num;
+			temp1->num = min;
+			min_address->num = store;
+			temp1 = temp1->next;
+		}
+		return head;
+	}
 }
